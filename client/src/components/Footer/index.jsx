@@ -22,7 +22,7 @@ export const FooterComponent = () => {
       </SocialContainer>
       <LicenseContainer>
         <LicenseText>
-        by Renan P.Rosa
+        by Renan P.Rosa :3
         </LicenseText>
       </LicenseContainer>
     </FooterContainer>

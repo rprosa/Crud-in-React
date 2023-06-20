@@ -30,7 +30,7 @@ padding: 10px;
     color: #000000;
   }
 
-  input {   /*caixa de texto*/
+  input { 
     padding: 11px;
     border-radius: 10px;
     border: 2px solid;

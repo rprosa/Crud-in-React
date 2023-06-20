@@ -18,14 +18,14 @@ export const Title = styled.h1`
   text-align: center;
   padding-top: 2rem;
   padding-bottom: 1rem;
-  font-size: 25px;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  color: #1b7a33;
+  font-size: 35px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  color: #45ba45;
 `; 
 export const Subtitle = styled.h2`
   text-align: center;
   padding-bottom: 2rem;
-  font-size: 20px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: #1b7a33;
+  font-size: 25px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #063f15;
 `; 

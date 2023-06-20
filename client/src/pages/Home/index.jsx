@@ -7,12 +7,12 @@ export const Home = () => {
   return (
     <Container>
       <Main>
-        <Title>Sistema de cadastro</Title>
-        <Subtitle>Períodos</Subtitle>
+        <Title>Sistema de cadastro </Title>
+        <Subtitle>de Períodos</Subtitle>
         <FormComponent />
         <TableComponent />
         <FooterComponent/>
-      </Main>
+      </Main> 
     </Container>
   );
 }

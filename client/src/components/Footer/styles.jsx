@@ -32,6 +32,6 @@ export const LicenseContainer = styled.div`
 export const LicenseText = styled.h3`
   text-align: center;
   color: #105e23;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
 `;
