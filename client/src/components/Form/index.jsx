@@ -3,27 +3,27 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export const FormComponent = () => {
-  const [nome, setNome] = useState("");
-  const [cargaHoraria, setCargaHoraria] = useState("");
-  const [peso, setPeso] = useState("");
+  const [periodo, setPeriodo] = useState("");
+  const [inicialDate, setInicialDate] = useState("");
+  const [finalDate, setFinalDate] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const listaDeMaterias = JSON.parse(localStorage.getItem("materias")) || [];
+    const listadePeriodos = JSON.parse(localStorage.getItem("periodos")) || [];
 
-    const materias = {
+    const objPeriodo = {
       id: uuidv4().slice(0,5),
-      nome: nome,
-      cargaHoraria: cargaHoraria,
-      peso: peso,
+      periodo: periodo,
+      inicialDate: inicialDate,
+      finalDate: finalDate,
     };
 
-    listaDeMaterias.push(materias);
-    localStorage.setItem("materias", JSON.stringify(listaDeMaterias));
+    listadePeriodos.push(objPeriodo);
+    localStorage.setItem("periodos", JSON.stringify(listadePeriodos));
 
-    setNome("");
-    setCargaHoraria("");
-    setPeso("");
+    setPeriodo("");
+    setInicialDate("");
+    setFinalDate("");
 
     window.location.reload()
   };
@@ -32,48 +32,44 @@ export const FormComponent = () => {
     <FormContainer>
       <Form onSubmit={handleSubmit}>
         <InputArea>
-          <label nome="nome" htmlFor="nome">
-            Nome
+          <label name="periodo" htmlFor="periodo">
+            Período
           </label>
           <input
-            type="text"
-            id="nome"
-            placeholder="Nome da matéria"
-            minLength={1}
-            maxLength={50}
+            type="number"
+            id="periodo"
+            placeholder="Numero do Período"
+            min={1}
+            max={10}
             required
-            value={nome}
-            onChange={(event) => setNome(event.target.value)}
+            value={periodo}
+            onChange={(event) => setPeriodo(event.target.value)}
           />
         </InputArea>
         <InputArea>
-          <label nome="cargaHoraria" htmlFor="cargaHoraria">
-            CG
+          <label name="inicialDate" htmlFor="inicialDate">
+            Data Inicial
           </label>
           <input
-            type="text"
-            id="cargaHoraria"
-            placeholder="Carga horária da matéria"
-            minLength={1}
-            maxLength={5}
+            type="date"
+            id="inicialDate"
+            placeholder="Data Inicial do Periodo"
             required
-            value={cargaHoraria}
-            onChange={(event) => setCargaHoraria(event.target.value)}
+            value={inicialDate}
+            onChange={(event) => setInicialDate(event.target.value)}
           />
         </InputArea>
         <InputArea>
-          <label nome="peso" htmlFor="peso">
-            Peso
+          <label name="finalDate" htmlFor="finalDate">
+            Data Final
           </label>
           <input
-            type="text"
-            id="peso"
-            placeholder="Peso da matéria"
-            minLength={1}
-            maxLength={2}
+            type="date"
+            id="finalDate"
+            placeholder="Data Final do Periodo"
             required
-            value={peso}
-            onChange={(event) => setPeso(event.target.value)}
+            value={finalDate}
+            onChange={(event) => setFinalDate(event.target.value)}
           />
         </InputArea>
         <Button type="submit">Cadastrar</Button>

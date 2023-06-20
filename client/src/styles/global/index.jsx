@@ -9,7 +9,7 @@ export const GlobalStyles = createGlobalStyle`
         --containers-bg: white;
         --label: #353535;
         --border-color: lightgray;
-        --outline-color: gray;
+        --outline-color: #cf4343555;
     }
 
     *{ 
@@ -18,13 +18,13 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
     html{
-        font-size: 62.5%
+        font-size: 10px;
     }
 
     body{
         width: 100%;
         height: 100vh;
         background: var(--bg-default);
-        font-family: 'Poppins', 'Raleway', sans-serif;
+        font-family: Verdana, Geneva, Tahoma, sans-serif
     }
 `;

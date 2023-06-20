@@ -8,7 +8,7 @@ export const Home = () => {
     <Container>
       <Main>
         <Title>Sistema de cadastro</Title>
-        <Subtitle>Matérias</Subtitle>
+        <Subtitle>Períodos</Subtitle>
         <FormComponent />
         <TableComponent />
         <FooterComponent/>

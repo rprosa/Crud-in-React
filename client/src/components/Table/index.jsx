@@ -19,18 +19,18 @@ export const TableComponent = () => {
   const [editingId, setEditingId] = useState(null);
   const [editedData, setEditedData] = useState({});
 
-  const getMaterias = () => {
-    const listaDeMaterias =
-      JSON.parse(localStorage.getItem("materias")) || [];
-    setTableData(listaDeMaterias);
+  const getPeriodo = () => {
+    const listadePeriodos =
+      JSON.parse(localStorage.getItem("periodos")) || [];
+    setTableData(listadePeriodos);
   };
 
   useEffect(() => {
-    getMaterias();
+    getPeriodo();
   }, []);
 
-  const handleEdit = (materiaId) => {
-    setEditingId(materiaId);
+  const handleEdit = (periodoId) => {
+    setEditingId(periodoId);
   };
 
   const handleCancelEdit = () => {
@@ -38,48 +38,48 @@ export const TableComponent = () => {
     setEditedData({});
   };
 
-  const handleSaveEdit = (materiaId) => {
-    const materiaEditada = tableData.find(
-      (materia) => materia.id === materiaId
+  const handleSaveEdit = (periodoId) => {
+    const periodoEditado = tableData.find(
+      (periodo) => periodo.id === periodoId
     );
 
-    materiaEditada.nome =
-      editedData[materiaId]?.nome !== undefined
-        ? editedData[materiaId]?.nome
-        : materiaEditada.nome;
-    materiaEditada.cargaHoraria =
-      editedData[materiaId]?.cargaHoraria !== undefined
-        ? editedData[materiaId]?.cargaHoraria
-        : materiaEditada.cargaHoraria;
-    materiaEditada.peso =
-      editedData[materiaId]?.peso !== undefined
-        ? editedData[materiaId]?.peso
-        : materiaEditada.peso;
-    localStorage.setItem("materias", JSON.stringify(tableData));
+    periodoEditado.periodo =
+      editedData[periodoId]?.periodo !== undefined
+        ? editedData[periodoId]?.periodo
+        : periodoEditado.periodo;
+    periodoEditado.inicialDate =
+      editedData[periodoId]?.inicialDate !== undefined
+        ? editedData[periodoId]?.inicialDate
+        : periodoEditado.inicialDate;
+    periodoEditado.finalDate =
+      editedData[periodoId]?.finalDate !== undefined
+        ? editedData[periodoId]?.finalDate
+        : periodoEditado.finalDate;
+    localStorage.setItem("periodos", JSON.stringify(tableData));
     setEditingId(null);
     setEditedData({});
   };
 
   const handleRemove = (event) => {
     const trElement = event.target.closest("tr");
-    const materiaId = trElement.getAttribute("data-id");
+    const periodoId = trElement.getAttribute("data-id");
     trElement.remove();
-    const listaDeMaterias =
-      JSON.parse(localStorage.getItem("materias")) || [];
-    const updatedListaDeMaterias = listaDeMaterias.filter(
-      (materia) => materia.id !== materiaId
+    const listadePeriodos =
+      JSON.parse(localStorage.getItem("periodos")) || [];
+    const updatedListaDePeriodos = listadePeriodos.filter(
+      (periodo) => periodo.id != periodoId
     );
     localStorage.setItem(
-      "materias",
-      JSON.stringify(updatedListaDeMaterias)
-    );
+      "periodos",
+     JSON.stringify(updatedListaDePeriodos)
+  );
   };
 
-  const handleFieldChange = (materiaId, field, value) => {
+  const handleFieldChange = (periodoId, field, value) => {
     setEditedData((prevData) => ({
       ...prevData,
-      [materiaId]: {
-        ...prevData[materiaId],
+      [periodoId]: {
+        ...prevData[periodoId],
         [field]: value === "" ? null : value,
       },
     }));
@@ -92,9 +92,9 @@ export const TableComponent = () => {
           <Thead>
             <Tr>
               <Th>ID</Th>
-              <Th>Nome</Th>
-              <Th>CG</Th>
-              <Th>Peso</Th>
+              <Th>Periodo</Th>
+              <Th>Data Inicial</Th>
+              <Th>Data Final</Th>
               <Th>
                 <ToolsIcon />
               </Th>
@@ -103,76 +103,76 @@ export const TableComponent = () => {
         ) : null}
         <tbody>
           {tableData.length > 0 ? (
-            tableData.map((materia) => (
-              <Tr key={materia.id} data-id={materia.id}>
-                <Td>{materia.id}</Td>
+            tableData.map((periodo) => (
+              <Tr key={periodo.id} data-id={periodo.id}>
+                <Td>{periodo.id}</Td>
                 <Td>
-                  {editingId === materia.id ? (
+                  {editingId === periodo.id ? (
                     <input
-                      type="text"
+                      type="number"
                       value={
-                        editedData[materia.id]?.nome !== undefined
-                          ? editedData[materia.id]?.nome
-                          : materia.nome
+                        editedData[periodo.id]?.periodo !== undefined
+                          ? editedData[periodo.id]?.periodo
+                          : periodo.periodo
                       }
                       onChange={(event) =>
                         handleFieldChange(
-                          materia.id,
-                          "nome",
+                          periodo.id,
+                          "periodo",
                           event.target.value
                         )
                       }
                     />
                   ) : (
-                    materia.nome || ""
+                    periodo.periodo || ""
                   )}
                 </Td>
                 <Td>
-                  {editingId === materia.id ? (
+                  {editingId === periodo.id ? (
                     <input
-                      type="text"
+                      type="date"
                       value={
-                        editedData[materia.id]?.cargaHoraria !== undefined
-                          ? editedData[materia.id]?.cargaHoraria
-                          : materia.cargaHoraria
+                        editedData[periodo.id]?.inicialDate !== undefined
+                          ? editedData[periodo.id]?.inicialDate
+                          : periodo.inicialDate
                       }
                       onChange={(event) =>
                         handleFieldChange(
-                          materia.id,
-                          "cargaHoraria",
+                          periodo.id,
+                          "inicialDate",
                           event.target.value
                         )
                       }
                     />
                   ) : (
-                    materia.cargaHoraria || ""
+                    periodo.inicialDate || ""
                   )}
                 </Td>
                 <Td>
-                  {editingId === materia.id ? (
+                  {editingId === periodo.id ? (
                     <input
-                      type="text"
+                      type="date"
                       value={
-                        editedData[materia.id]?.peso !== undefined
-                          ? editedData[materia.id]?.peso
-                          : materia.peso
+                        editedData[periodo.id]?.finalDate !== undefined
+                          ? editedData[periodo.id]?.finalDate
+                          : periodo.finalDate
                       }
                       onChange={(event) =>
                         handleFieldChange(
-                          materia.id,
-                          "peso",
+                          periodo.id,
+                          "finalDate",
                           event.target.value
                         )
                       }
                     />
                   ) : (
-                    materia.peso || ""
+                    periodo.finalDate || ""
                   )}
                 </Td>
                 <Td>
-                  {editingId === materia.id ? (
+                  {editingId === periodo.id ? (
                     <>
-                      <SaveButton onClick={() => handleSaveEdit(materia.id)}>
+                      <SaveButton onClick={() => handleSaveEdit(periodo.id)}>
                         Salvar
                       </SaveButton>
                       <CancelButton onClick={handleCancelEdit}>
@@ -181,7 +181,7 @@ export const TableComponent = () => {
                     </>
                   ) : (
                     <>
-                      <EditIcon onClick={() => handleEdit(materia.id)} />
+                      <EditIcon onClick={() => handleEdit(periodo.id)} />
                       <RemoveIcon onClick={(event) => handleRemove(event)} />
                     </>
                   )}
